@@ -1,20 +1,20 @@
 <?php
-use \yii\helpers\Url;
+
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
+/* @var $model app\models\Course */
+
+$this->title = 'Create Course';
+$this->params['breadcrumbs'][] = ['label' => 'Courses', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<h1>Novo curso</h1>
+<div class="course-create">
 
-<form name="form" action="<?=  Url::to(['course/create']) ?>" method="POST">
-    <input type="hidden" name="<?= \Yii::$app->request->csrfParam; ?>" value="<?= \Yii::$app->request->csrfToken; ?>">
-    <div class="form-group">
-        <label for="">Name:</label>
-        <input type="text" class="form-control" id="name" name="name" placeholder="Digite o nome"> 
-    </div>
-    <div class="form-group">
-        <label for="">Hours:</label>
-        <input type="text" class="form-control" id="hours" name="hours" placeholder="Digite a carga horária"> 
-    </div>
+    <h1><?= Html::encode($this->title) ?></h1>
 
-    <button type="submit" class="btn btn-primary">Enviar</button>
-</form>
+    <?= $this->render('_form', [
+        'model' => $model,
+    ]) ?>
+
+</div>

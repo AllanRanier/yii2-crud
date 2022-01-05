@@ -1,20 +1,21 @@
 <?php
-use \yii\helpers\Url;
+
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
+/* @var $model app\models\Course */
+
+$this->title = 'Update Course: ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Courses', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = 'Update';
 ?>
-<h1>Edição de curso</h1>
+<div class="course-update">
 
-<form name="form" action="<?=  Url::to(['course/update', 'id' => $model->id ]) ?>" method="POST">
-    <input type="hidden" name="<?= \Yii::$app->request->csrfParam; ?>" value="<?= \Yii::$app->request->csrfToken; ?>">
-    <div class="form-group">
-        <label for="">Name:</label>
-        <input type="text" class="form-control" id="name" name="name" placeholder="Digite o nome" value="<?= $model->name; ?>"> 
-    </div>
-    <div class="form-group">
-        <label for="">Hours:</label>
-        <input type="text" class="form-control" id="hours" name="hours" placeholder="Digite a carga horária"  value="<?= $model->hours; ?>"> 
-    </div>
+    <h1><?= Html::encode($this->title) ?></h1>
 
-    <button type="submit" class="btn btn-primary">Enviar</button>
-</form>
+    <?= $this->render('_form', [
+        'model' => $model,
+    ]) ?>
+
+</div>

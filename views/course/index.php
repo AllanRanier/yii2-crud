@@ -1,30 +1,44 @@
 <?php
-use \yii\helpers\Url;
-/* @var $this yii\web\View */
-?>
-<h1>Listagem de cursos</h1>
 
-<h5><a href="<?=  Url::to(['course/create']) ?>" class="btn btn-info btn-sm">Novo curso</a></h3>
-<table class="table">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Hours</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach($courses as $course): ?>
-            <tr>
-                <td><?= $course->id; ?></td>
-                <td><?= $course->name; ?></td>
-                <td><?= $course->hours; ?></td>
-                <td>
-                    <a href="<?=  Url::to(['course/update', 'id' => $course->id]) ?>" class="btn btn-secondary btn-sm">Editar</a>
-                    <a href="<?=  Url::to(['course/delete', 'id' => $course->id]) ?>" class="btn btn-danger btn-sm">Excluir</a>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
+use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\grid\ActionColumn;
+use yii\grid\GridView;
+
+/* @var $this yii\web\View */
+/* @var $searchModel app\models\CourseSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = 'Courses';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="course-index">
+
+    <h1><?= Html::encode($this->title) ?></h1>
+
+    <p>
+        <?= Html::a('Create Course', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'id',
+            'name',
+            'hours',
+            [
+                'class' => ActionColumn::className(),
+                'urlCreator' => function ($action, Course $model, $key, $index, $column) {
+                    return Url::toRoute([$action, 'id' => $model->id]);
+                 }
+            ],
+        ],
+    ]); ?>
+
+
+</div>

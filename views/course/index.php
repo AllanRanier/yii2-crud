@@ -22,6 +22,7 @@ use \yii\helpers\Url;
                 <td><?= $course->hours; ?></td>
                 <td>
                     <a href="<?=  Url::to(['course/update', 'id' => $course->id]) ?>" class="btn btn-secondary btn-sm">Editar</a>
+                    <a href="<?=  Url::to(['course/delete', 'id' => $course->id]) ?>" class="btn btn-danger btn-sm">Excluir</a>
                 </td>
             </tr>
         <?php endforeach; ?>

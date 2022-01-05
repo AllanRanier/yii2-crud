@@ -49,7 +49,8 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 'text/<id:\d+>/<name>' => 'teste/mais-parametros',
-                'course/<id:\d+>/update' => 'course/update'
+                'course/<id:\d+>/update' => 'course/update',
+                'course/<id:\d+>/delete' => 'course/delete',
             ],
         ],
         
